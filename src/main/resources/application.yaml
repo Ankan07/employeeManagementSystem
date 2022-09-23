@@ -1,0 +1,69 @@
+server:
+  port: '8082'
+
+spring:
+  profiles:
+    active: qa
+---
+
+spring:
+  profiles: dev
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: springboot
+    url: jdbc:mysql://localhost:3306/springboot-dev
+    password: Password@1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+welcome:
+  message: Hey what's up Ankan
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+        exclude: "env,beans"
+
+
+---
+
+spring:
+  profiles: qa
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: springboot
+    url: jdbc:mysql://localhost:3306/springboot
+    password: Password@1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+welcome:
+  message: Hey what's up Ankan
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+
+---
+spring:
+  profiles: prod
+  datasource:
+    driver-class-name: com.mysql.jdbc.Driver
+    username: springboot
+    url: jdbc:mysql://localhost:3306/springboot-prod
+    password: Password@1234
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: 'true'
+welcome:
+  message: Hey what's up Ankan
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
