@@ -1,5 +1,6 @@
 package com.dailycodebuffer.Springboot.tutorial.entity;
 
+import com.dailycodebuffer.Springboot.tutorial.validation.IpAddress;
 import lombok.*;
 import org.hibernate.validator.constraints.Length;
 
@@ -10,7 +11,6 @@ import javax.persistence.Id;
 import javax.validation.constraints.*;
 
 @Entity
-
 @Getter
 @Setter
 @NoArgsConstructor
@@ -26,8 +26,7 @@ public class Department {
     private String departmentName;
     private String departmentAddress;
     private String departmentCode;
-
-
-
+    @IpAddress
+    private String ipAddress;
 
 }

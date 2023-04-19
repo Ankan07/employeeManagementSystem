@@ -3,6 +3,7 @@ package com.dailycodebuffer.Springboot.tutorial.controller;
 import com.dailycodebuffer.Springboot.tutorial.entity.Department;
 import com.dailycodebuffer.Springboot.tutorial.error.DepartmentNotFoundException;
 import com.dailycodebuffer.Springboot.tutorial.service.DepartmentService;
+import com.dailycodebuffer.Springboot.tutorial.service.ValidatorService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +17,9 @@ public class DepartmentController {
 
     @Autowired
     private DepartmentService departmentService;
+
+    @Autowired
+    private ValidatorService validatorService;
     private final Logger LOGGER = LoggerFactory.getLogger(DepartmentController.class);
     @PostMapping("/departments")
 
@@ -40,6 +44,7 @@ public class DepartmentController {
 
     @PutMapping("/departments/{id}")
     public Department updateDepartment(@PathVariable("id") Long departmentId, @RequestBody Department department){
+        validatorService.validateInput(department);
        return departmentService.updateDepartment(departmentId,department);
     }
 
